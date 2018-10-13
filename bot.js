@@ -171,7 +171,7 @@ NormalBc.on("collect", r => {
       .setAuthor(`Sent to ${message.guild.memberCount} members!`);
       message.channel.sendEmbed(embed) .then(x => {
         x.delete(3000);
-      })
+      });
     if(message.attachments.first()) {
       m.sendFile(message.attachments.first().url).catch();
     }
