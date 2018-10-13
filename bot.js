@@ -128,7 +128,7 @@ client.on('ready', () => {
  let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
  let BcList = new Discord.RichEmbed()
  .setThumbnail(message.author.avatarURL)
- .setAuthor(`محتوى الرساله [ ${args} ]`)
+ .setAuthor(`محتوى الرساله ${args}`)
  .setDescription(`برودكاست بـ امبد 📝\nبرودكاست بدون امبد✏ \nلديك دقيقه للأختيار قبل الغاء البرودكاست`)
  if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(BcList).then(msg => {
  msg.react('📝')
@@ -142,6 +142,7 @@ client.on('ready', () => {
  let NormalBc = msg.createReactionCollector(NormalBcFilter, { time: 60000 });
   
  EmbedBc.on("collect", r => {
+ message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
  message.guild.members.forEach(m => {
  var bc = new
  Discord.RichEmbed()
@@ -153,15 +154,13 @@ client.on('ready', () => {
  .setThumbnail(message.author.avatarURL)
  m.send({ embed: bc })
  msg.delete();
- message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
  })
  })
  NormalBc.on("collect", r => {
+   message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
  message.guild.members.forEach(m => {
- m.send(`${args}\n${m}`);
+ m.send(args + `\n${m}`);
  msg.delete();
- message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-
  })
  })
  })
