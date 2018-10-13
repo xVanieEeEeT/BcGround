@@ -142,31 +142,40 @@ let EmbedBc = msg.createReactionCollector(EmbedBcFilter, { time: 60000 });
 let NormalBc = msg.createReactionCollector(NormalBcFilter, { time: 60000 });
  
 EmbedBc.on("collect", r => {
-message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-var bc = new
-Discord.RichEmbed()
-.setColor('RANDOM')
-  .setTitle('`-Broadcast-`')
-.setAuthor(`Server : ${message.guild.name}`)
-.setFooter(`Sender : ${message.author.username}`)
-.setDescription(`Message : ${args}`)
-.setThumbnail(message.author.avatarURL)
-m.send({ embed: bc })
-		if(message.attachments.first()) {
-		m.sendFile(message.attachments.first().url).catch();
-	}
-msg.delete();
+  message.guild.members.forEach(m => {
+    let far = new Discord.RichEmbed()
+      .setTitle('New Message.')
+      .addField('Server:', `${message.guild.name}`)
+      .addField('Author:', `${message.author.username}`)
+      .addField('Message:', `${args}\n${m}`)
+      .setColor("RANDOM")
+      .setFooter(`${client.user.username}`)
+      .setThumbnail(`${m.user.avatarURL}`);
+        m.sendEmbed(far)
+
+    let embed = new Discord.RichEmbed()
+      .setAuthor(`Sent to ${message.guild.memberCount} members!`)
+      .setColor("RANDOM");
+      message.channel.sendEmbed(embed) .then(x => {
+        x.delete(3000);
+      })
+    if(message.attachments.first()) {
+      m.sendFile(message.attachments.first().url).catch();
+    }
 })
 })
 NormalBc.on("collect", r => {
-  message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-m.send(`${args}\n${m}`);
-	if(message.attachments.first()) {
-		m.sendFile(message.attachments.first().url).catch();
-	}
-msg.delete();
+  message.guild.members.forEach(m => {
+    m.send(`${args}\n${m}`)
+    let embed = new Discord.RichEmbed()
+      .setAuthor(`Sent to ${message.guild.memberCount} members!`)
+      .setColor("RANDOM");
+      message.channel.sendEmbed(embed) .then(x => {
+        x.delete(3000);
+      })
+    if(message.attachments.first()) {
+      m.sendFile(message.attachments.first().url).catch();
+    }
 })
 })
 })
