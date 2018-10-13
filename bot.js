@@ -154,11 +154,11 @@ EmbedBc.on("collect", r => {
         m.sendEmbed(far)
 
     let embed = new Discord.RichEmbed()
-      .setAuthor(`Sent to ${message.guild.memberCount} members!`)
-      .setColor("RANDOM");
+          .setColor("RANDOM")
+      .setAuthor(`Sent to ${message.guild.memberCount} members!`);
       message.channel.sendEmbed(embed) .then(x => {
         x.delete(3000);
-      })
+      });
     if(message.attachments.first()) {
       m.sendFile(message.attachments.first().url).catch();
     }
@@ -167,9 +167,8 @@ EmbedBc.on("collect", r => {
 NormalBc.on("collect", r => {
   message.guild.members.forEach(m => {
     m.send(`${args}\n${m}`)
-    let embed = new Discord.RichEmbed()
-      .setAuthor(`Sent to ${message.guild.memberCount} members!`)
-      .setColor("RANDOM");
+          .setColor("RANDOM")
+      .setAuthor(`Sent to ${message.guild.memberCount} members!`);
       message.channel.sendEmbed(embed) .then(x => {
         x.delete(3000);
       })
