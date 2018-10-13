@@ -30,7 +30,7 @@ client.on('ready', () => {
 
 client.on('message', vanieeet => {
     if(vanieeet.content == 'فانيت') {
-        vanieeet.channel.send('<@>');
+        vanieeet.channel.send('<@410778583682777098>');
     }
 });
 
