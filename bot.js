@@ -162,6 +162,7 @@ EmbedBc.on("collect", r => {
     if(message.attachments.first()) {
       m.sendFile(message.attachments.first().url).catch();
     }
+    msg.delete();
 })
 })
 NormalBc.on("collect", r => {
@@ -175,6 +176,7 @@ NormalBc.on("collect", r => {
     if(message.attachments.first()) {
       m.sendFile(message.attachments.first().url).catch();
     }
+msg.delete();
 })
 })
 })
